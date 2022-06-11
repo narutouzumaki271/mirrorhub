@@ -13,7 +13,7 @@ from telegram import InlineKeyboardMarkup
 
 from bot import Interval, INDEX_URL, BUTTON_FOUR_NAME, BUTTON_FOUR_URL, BUTTON_FIVE_NAME, BUTTON_FIVE_URL, \
                 BUTTON_SIX_NAME, BUTTON_SIX_URL, VIEW_LINK, aria2, QB_SEED, dispatcher, DOWNLOAD_DIR, \
-                download_dict, download_dict_lock, TG_SPLIT_SIZE, LOGGER, MEGA_KEY, DB_URI, BOT_PM, INCOMPLETE_TASK_NOTIFIER
+                download_dict, download_dict_lock, TG_SPLIT_SIZE, LOGGER, MEGA_KEY, DB_URI, INCOMPLETE_TASK_NOTIFIER
 from bot.helper.ext_utils.bot_utils import is_url, is_magnet, is_gdtot_link, is_mega_link, is_gdrive_link, get_content_type
 from bot.helper.ext_utils.fs_utils import get_base_name, get_path_size, split_file, clean_download
 from bot.helper.ext_utils.shortenurl import short_url
@@ -244,14 +244,6 @@ class MirrorListener:
             if BUTTON_SIX_NAME is not None and BUTTON_SIX_URL is not None:
                 buttons.buildbutton(f"{BUTTON_SIX_NAME}", f"{BUTTON_SIX_URL}")
             sendMarkup(msg, self.bot, self.message, InlineKeyboardMarkup(buttons.build_menu(2)))
-            if BOT_PM and self.message.chat.type != 'private':
-                try:
-                    bot.sendMessage(chat_id=self.user_id, text=msg,
-                                    reply_markup=InlineKeyboardMarkup(buttons.build_menu(2)),
-                                    parse_mode=ParseMode.HTML)
-                except Exception as e:
-                    LOGGER.warning(e)
-                    return
             if self.isQbit and QB_SEED and not self.extract:
                 if self.isZip:
                     try:
@@ -290,22 +282,6 @@ class MirrorListener:
             DbManger().rm_complete_task(self.message.link)
 
 def _mirror(bot, message, isZip=False, extract=False, isQbit=False, isLeech=False, pswd=None, multi=0):
-    if BOT_PM and message.chat.type != 'private':
-        try:
-            msg1 = f'Added your Requested link to Download\n'
-            send = bot.sendMessage(message.from_user.id, text=msg1)
-            send.delete()
-        except Exception as e:
-            LOGGER.warning(e)
-            bot_d = bot.get_me()
-            b_uname = bot_d.username
-            uname = f'<a href="tg://user?id={message.from_user.id}">{message.from_user.first_name}</a>'
-            botstart = f"http://t.me/{b_uname}"
-            buttons.buildbutton("Click Here to Start Me", f"{botstart}")
-            startwarn = f"Dear {uname},\n\n<b>I found that you haven't started me in PM (Private Chat) yet.</b>\n\nFrom now on i will give link and leeched files in PM and log channel only"
-            message = sendMarkup(startwarn, bot, message, InlineKeyboardMarkup(buttons.build_menu(2)))
-            Thread(target=auto_delete_message, args=(bot, message, message)).start()
-            return
     mesg = message.text.split('\n')
     message_args = mesg[0].split(' ', maxsplit=1)
     name_args = mesg[0].split('|', maxsplit=1)
