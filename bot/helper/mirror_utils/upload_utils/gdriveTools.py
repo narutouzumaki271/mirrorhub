@@ -164,7 +164,7 @@ class GoogleDriveHelper:
         # File body description
         file_metadata = {
             'name': file_name,
-            'description': 'Uploaded by Mirror-leech-telegram-bot',
+            'description': 'Uploaded by Mirrorhubbot',
             'mimeType': mime_type,
         }
         if parent_id is not None:
@@ -679,7 +679,7 @@ class GoogleDriveHelper:
         for content in telegraph_content:
             path.append(
                 telegraph.create_page(
-                    title='Mirror-Leech-Bot Drive Search',
+                    title='Mirrorhub Drive Search',
                     content=content
                 )["path"]
             )
