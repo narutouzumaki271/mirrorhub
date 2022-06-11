@@ -49,11 +49,11 @@ def stats(update, context):
             f'<b>OS Uptime:</b> {osUptime}\n\n'\
             f'<b>Total Disk Space:</b> {total}\n'\
             f'<b>Used:</b> {used} | <b>Free:</b> {free}\n\n'\
-            f'<b>Upload edit:</b> {sent}\n'\
+            f'<b>Upload:</b> {sent}\n'\
             f'<b>Download:</b> {recv}\n\n'\
-            f'<b>CPU edited😁:</b> {cpuUsage}%\n'\
+            f'<b>CPU:</b> {cpuUsage}%\n'\
             f'<b>RAM:</b> {mem_p}%\n'\
-            f'<b>DISK edited:</b> {disk}%\n\n'\
+            f'<b>DISK:</b> {disk}%\n\n'\
             f'<b>Physical Cores:</b> {p_core}\n'\
             f'<b>Total Cores:</b> {t_core}\n\n'\
             f'<b>SWAP:</b> {swap_t} | <b>Used:</b> {swap_p}%\n'\
@@ -65,8 +65,8 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
-    buttons.buildbutton("Report Group", "https://t.me/+PRRzqHd31XY3ZWZk")
+    buttons.buildbutton("Master", "https://t.me/krn2701")
+    buttons.buildbutton("Group", "https://t.me/+MudVj2hpXyYyMGRl")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
@@ -171,7 +171,7 @@ help_string_telegraph = f'''<br>
 '''
 
 help = telegraph.create_page(
-        title='Mirror-Leech-Bot Help',
+        title='Mirrorhub',
         content=help_string_telegraph,
     )["path"]
 
