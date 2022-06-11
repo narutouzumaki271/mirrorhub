@@ -51,7 +51,7 @@ def stats(update, context):
             f'<b>Used:</b> {used} | <b>Free:</b> {free}\n\n'\
             f'<b>Upload edit:</b> {sent}\n'\
             f'<b>Download:</b> {recv}\n\n'\
-            f'<b>CPU:</b> {cpuUsage}%\n'\
+            f'<b>CPU edited:</b> {cpuUsage}%\n'\
             f'<b>RAM:</b> {mem_p}%\n'\
             f'<b>DISK edited:</b> {disk}%\n\n'\
             f'<b>Physical Cores:</b> {p_core}\n'\
