@@ -382,6 +382,11 @@ try:
 except:
     VIEW_LINK = False
 try:
+    BOT_PM = getConfig('BOT_PM')
+    BOT_PM = BOT_PM.lower() == 'true'
+except KeyError:
+    BOT_PM = False    
+try:
     IS_TEAM_DRIVE = getConfig('IS_TEAM_DRIVE')
     IS_TEAM_DRIVE = IS_TEAM_DRIVE.lower() == 'true'
 except:
