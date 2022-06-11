@@ -380,12 +380,7 @@ try:
     VIEW_LINK = getConfig('VIEW_LINK')
     VIEW_LINK = VIEW_LINK.lower() == 'true'
 except:
-    VIEW_LINK = False
-try:
-    BOT_PM = getConfig('BOT_PM')
-    BOT_PM = BOT_PM.lower() == 'true'
-except KeyError:
-    BOT_PM = False    
+    VIEW_LINK = False    
 try:
     IS_TEAM_DRIVE = getConfig('IS_TEAM_DRIVE')
     IS_TEAM_DRIVE = IS_TEAM_DRIVE.lower() == 'true'
